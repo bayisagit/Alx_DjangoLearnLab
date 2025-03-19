@@ -1,0 +1,5 @@
+<h1>Are you sure you want to delete "{{ post.title }}"?</h1>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, delete</button>
+</form>

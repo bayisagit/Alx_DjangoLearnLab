@@ -1,0 +1,6 @@
+<link rel="stylesheet" href="{% static 'blog/styles.css' %}">
+
+<h1>Profile</h1>
+{% csrf_token %}
+<p>Username: {{ user.username }}</p>
+<p>Email: {{ user.email }}</p>

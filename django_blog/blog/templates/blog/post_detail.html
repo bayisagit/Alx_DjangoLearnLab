@@ -1,0 +1,33 @@
+<h1>{{ post.title }}</h1>
+<p>{{ post.content }}</p>
+<p>By {{ post.author }} on {{ post.published_date }}</p>
+
+<h1>{{ object.title }}</h1>
+<p>{{ object.content }}</p>
+
+<hr>
+<h2>Comments</h2>
+<div>
+    {% for comment in comments %}
+        <p><strong>{{ comment.author }}</strong> ({{ comment.created_at }}):</p>
+        <p>{{ comment.content }}</p>
+        <hr>
+    {% endfor %}
+</div>
+
+<h2>Add a Comment</h2>
+{% if user.is_authenticated %}
+    <form method="post" action="{% url 'add-comment' object.id %}">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit">Post Comment</button>
+    </form>
+{% else %}
+    <p>You must be logged in to comment.</p>
+{% endif %}
+
+<p>Tags: 
+    {% for tag in post.tags.all %}
+        <a href="{% url 'tag-detail' tag.name %}">{{ tag.name }}</a>
+    {% endfor %}
+  </p>

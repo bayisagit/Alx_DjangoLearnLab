@@ -1,0 +1,11 @@
+<!-- blog/templates/blog/tag_detail.html -->
+<h1>{{ tag.name }}</h1>
+<p>Posts tagged with "{{ tag.name }}"</p>
+
+<ul>
+    {% for post in posts %}
+        <li>
+            <a href="{% url 'post-detail' pk=post.pk %}">{{ post.title }}</a>
+        </li>
+    {% endfor %}
+</ul>
